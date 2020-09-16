@@ -63,7 +63,7 @@ void ege252::task3622()
         int i, l = 0, lmax = 0, s = 0, j = 0;
         for (i = 0; i < N; i++)
             cin >> a[i];
-     
+     // dfdsfsdf
         for (i = 0; i < N; i++) 
         {
             if (a[i] < a[i + 1])
