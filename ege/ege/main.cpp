@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	ege252::task9209();
+	ege252::task3622();
 
 	return 0;
 }
