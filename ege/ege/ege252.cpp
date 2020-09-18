@@ -59,7 +59,7 @@ void ege252::task9811()
 void ege252::task3622()
 {
         int const N = 10;
-        int i, l = 0, lmax = 0, s = 0, j = 0, smax;
+        int i, l = 0, lmax = 0, s = 0, smax;
         int a[N];
         for (i = 0; i < N; i++)
             cin >> a[i];
