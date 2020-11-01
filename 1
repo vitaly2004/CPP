@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int n = 0;
+	int max7 = 0;
+	int max = 0;
+	cin >> n;
+	int number = 0;
+	for (int i = 0; i < n; ++i)
+	{
+
+		cin >> number;
+
+		if (number % 7 == 0 && number % 49 != 0)
+		{
+			if (number > max7)
+			{
+				max7 = number;
+			}
+		}
+
+		if (number % 7 != 0)
+		{
+			if (number > max)
+			{
+				max = number;
+			}
+		}
+	}
+
+	cout << max * max7;
+	return 0;
+}
