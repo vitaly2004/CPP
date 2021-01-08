@@ -1,86 +1,80 @@
 #include <iostream>
 using namespace std;
 
+
+
+bool smooth(int b, int number)
+{
+	if (number == 1)
+	{
+		return true;
+	}
+	for (int i = 2; i <= number; ++i)
+	{
+		if (number % i == 0)
+		{
+			bool flag = true;
+			for (int k = 2; k <= b and k <= i; ++k)
+			{
+				if (i % k == 0)
+				{
+					flag = false;
+					break;
+				}
+			}
+			if (flag)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+bool superSmooth(int b, int number)
+{
+	for (int i = number * 10; i > 0; i = i / 10)
+	{
+		if (!smooth(b, i))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 int main()
 {
-	int n = 0;
-	cin >> n;
-	int max171 = 0;
-	int max172 = 0;
-	int max0 = 0;
-	int mmax171 = 0;
-	int mmax172 = 0;
-	int mmax0 = 0;
-	for (int i = 0; i < n; ++i)
+	int b = 0;
+	int maxNumber = 0;
+	cin >> b;
+	for (int number = 0; number < 1000; ++number)
 	{
-		int num = 0;
-		cin >> num;
-		if (num % 17 == 0 and num % 2 == 0)
+		if (superSmooth(b, number))
 		{
-			if (num >= max171)
+			if (maxNumber < number)
 			{
-				max172 = max171;
-				max171 = num;
-			}
-			if (num < max171 and num > max172)
-			{
-				max172 = num;
+				maxNumber = number;
 			}
 		}
-		else if ((num - max171) % 2 == 0)
-		{
-			max0 = num;
-		}
+	}
+	cout << maxNumber;
+}
 
-		if (num % 17 == 0 and num % 2 != 0)
+void takH()
+{
+	int b = 0;
+	int maxNumber = 0;
+	cin >> b;
+	for (int number = 0; number < 1000; ++number)
+	{
+		if (superSmooth(b, number))
 		{
-			if (num >= mmax171)
+			if (maxNumber < number)
 			{
-				mmax172 = mmax171;
-				mmax171 = num;
-			}
-			if (num < mmax171 and num > mmax172)
-			{
-				mmax172 = num;
+				maxNumber = number;
 			}
 		}
-		else if ((num - mmax171) % 2 == 0)
-		{
-			mmax0 = num;
-		}
 	}
-	int max[4] = {0, 0, 0, 0};
-	if (max171 != 0 and max172 != 0)
-	{
-		max[0] = max171 + max172;
-	}
-	if (max171 != 0 and max0 != 0)
-	{
-		max[1] = max171 + max0;
-	}
-	if (mmax171 != 0 and mmax172 != 0)
-	{
-		max[2] = mmax171 + mmax172;
-	}
-	if (mmax171 != 0 and mmax0 != 0)
-	{
-		max[3] = mmax171 + mmax0;
-	}
-	int mmmax = 0;
-	int ind = 0;
-	for (int i = 0; i < 4; ++i)
-	{
-		if (max[i] > mmmax)
-		{
-			mmmax = max[i];
-			ind = i;
-		}
-	}
-	if (mmmax == 0)
-	{
-		cout << "0 0";
-		return 0;
-	}
-	
-	return 0;
+	cout << maxNumber;
 }
