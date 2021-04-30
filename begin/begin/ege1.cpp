@@ -1,80 +1,53 @@
 #include <iostream>
 using namespace std;
 
-
-
-bool smooth(int b, int number)
+void sort(int* l)
 {
-	if (number == 1)
+	for (int j = 1; j <= 3; ++j)
 	{
-		return true;
-	}
-	for (int i = 2; i <= number; ++i)
-	{
-		if (number % i == 0)
+		for (int i = j; i < 3; ++i)
 		{
-			bool flag = true;
-			for (int k = 2; k <= b and k <= i; ++k)
+			if (l[i] > l[i + 1])
 			{
-				if (i % k == 0)
-				{
-					flag = false;
-					break;
-				}
-			}
-			if (flag)
-			{
-				return false;
+				swap(l[i], l[i + 1]);
 			}
 		}
 	}
-	return true;
-}
-
-bool superSmooth(int b, int number)
-{
-	for (int i = number * 10; i > 0; i = i / 10)
-	{
-		if (!smooth(b, i))
-		{
-			return false;
-		}
-	}
-	return true;
 }
 
 int main()
 {
-	int b = 0;
-	int maxNumber = 0;
-	cin >> b;
-	for (int number = 0; number < 1000; ++number)
+	int a = 0;
+	int n = 0;
+	int minN = 10000;
+	int l[4];
+	int sum[4] = { 0,0,0,0 };
+	cin >> n;
+	for (int i = 1; i <= n; ++i)
 	{
-		if (superSmooth(b, number))
+		cin >> l[1] >> l[2] >> l[3];
+		sort(l);
+		if (l[3] - l[2] < minN)
 		{
-			if (maxNumber < number)
-			{
-				maxNumber = number;
-			}
+			minN = l[3] - l[2];
+		}
+		if (l[3] - l[1] < minN)
+		{
+			minN = l[3] - l[1];
+		}
+		for (int i = 1; i <= 3; ++i)
+		{
+			sum[i] += l[i];
 		}
 	}
-	cout << maxNumber;
+	if ((sum[1] + sum[2]) % 2 == 1)
+	{
+		cout << sum[3];
+	}
+	else
+	{
+		cout << sum[3] - minN;
+	}
+	return 0;
 }
 
-void takH()
-{
-	int b = 0;
-	int maxNumber = 0;
-	cin >> b;
-	for (int number = 0; number < 1000; ++number)
-	{
-		if (superSmooth(b, number))
-		{
-			if (maxNumber < number)
-			{
-				maxNumber = number;
-			}
-		}
-	}
-	cout << maxNumber;
-}
